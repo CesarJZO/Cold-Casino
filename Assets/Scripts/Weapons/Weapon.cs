@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 
-public class Weapon : ScriptableObject
+namespace Weapons
 {
-        
+    public class Weapon : ScriptableObject
+    {
+        public GameObject prefab;
+
+        [SerializeField] private int damageMagnitude;
+        public int DamageMagnitude => damageMagnitude;
+    }
 }
