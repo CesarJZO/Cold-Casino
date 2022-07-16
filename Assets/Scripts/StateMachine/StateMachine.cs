@@ -1,18 +1,20 @@
 ﻿public class StateMachine
 {
-    private State _currentState;
-    public State CurrentState => _currentState;
+    public State PreviousState { get; private set; }
 
-    public void Initalize(State state)
+    public State CurrentState { get; private set; }
+
+    public void Initialize(State state)
     {
-        _currentState = state;
+        CurrentState = state;
         state.Start();
     }
 
     public void ChangeState(State state)
     {
-        _currentState.Stop();
-        _currentState = state;
+        CurrentState.Stop();
+        PreviousState = CurrentState;
+        CurrentState = state;
         state.Start();
     }
 }
