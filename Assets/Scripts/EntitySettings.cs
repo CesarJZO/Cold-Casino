@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Settings", menuName = "Entity/Settings")]
 public class EntitySettings : ScriptableObject
 {
     [Header("Attributes")] 

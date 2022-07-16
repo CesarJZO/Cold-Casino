@@ -12,7 +12,7 @@ public class WeaponController : MonoBehaviour
     private void Update()
     {
         float angle;
-        var input = penguin.rawInput;
+        var input = penguin.settings.rawInput;
 
         if (input == Vector2.zero)
         {

@@ -7,20 +7,10 @@ namespace Penguin
     [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput))]
     public class PenguinController : MonoBehaviour
     {
-        public float ceilDistance;
-        public Vector2 ceilSize;
-        public LayerMask ceilMask;
-        
         [Header("Testing")] 
         public float slideTimer;
         public float drag;
         
-        [Header("Input")]
-        [SerializeField] private float smoothTime;
-        public float deadZone;
-        
-        public Vector2 rawInput;
-        public Vector2 smoothInput;
         private Vector2 _inputVelocity;
 
         private Quaternion _currentRotation;
@@ -32,14 +22,14 @@ namespace Penguin
         [HideInInspector] public InputAction lockAction;
 
         [Header("Dependencies")]
-        public EntitySettings settings;
+        public PenguinSettings settings;
         public Collider2D headCollider;
         [HideInInspector] public Animator animator;
         [HideInInspector] public new Rigidbody2D rigidbody;
         
         #region References
 
-        public RaycastHit2D Ceiling => Physics2D.BoxCast(transform.position, ceilSize, transform.rotation.eulerAngles.z, Vector2.up, ceilDistance, ceilMask);
+        public RaycastHit2D Ceiling => Physics2D.BoxCast(transform.position, settings.CeilSize, transform.rotation.eulerAngles.z, Vector2.up, settings.CeilDistance, settings.CeilMask);
         public RaycastHit2D Grounded => Physics2D.Raycast(transform.position, Vector2.down, settings.GroundDistance, settings.GroundMask);
         public bool IsFacingRight { get; private set; } = true;
 
@@ -86,21 +76,21 @@ namespace Penguin
 
         private void Update()
         {
-            rawInput = moveAction.ReadValue<Vector2>();
-            smoothInput = Vector2.SmoothDamp(smoothInput, rawInput, ref _inputVelocity, smoothTime);
+            settings.rawInput = moveAction.ReadValue<Vector2>();
+            settings.smoothInput = Vector2.SmoothDamp(settings.smoothInput, settings.rawInput, ref _inputVelocity, settings.SmoothTime);
 
-            if (smoothInput.magnitude <= deadZone)
-                smoothInput = Vector2.zero;
+            if (settings.smoothInput.magnitude <= settings.DeadZone)
+                settings.smoothInput = Vector2.zero;
             
             var color = Color.red;
             if(Grounded)
                 color = Color.green;
             Debug.DrawRay(transform.position, Vector3.down * settings.GroundDistance, color);
 
-            if (rawInput.x > 0 && (int)_currentRotation.y == 180 || rawInput.x < 0 && (int)_currentRotation.y != 180)
+            if (settings.rawInput.x > 0 && (int)_currentRotation.y == 180 || settings.rawInput.x < 0 && (int)_currentRotation.y != 180)
             {
-                _currentRotation.y = rigidbody.velocity.x > deadZone ? 0 : 180;
-                IsFacingRight = rigidbody.velocity.x > deadZone;
+                _currentRotation.y = rigidbody.velocity.x > settings.DeadZone ? 0 : 180;
+                IsFacingRight = rigidbody.velocity.x > settings.DeadZone;
             }
             
             _stateMachine.CurrentState.Update();
@@ -123,15 +113,15 @@ namespace Penguin
                 transform.rotation = _currentRotation;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             var position = transform.position;
             // Ground Raycast
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.cyan;
             Gizmos.DrawLine(position, position + Vector3.down * settings.GroundDistance);
             // Ceiling Boxcast
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(position, ceilSize);
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireCube(position, settings.CeilSize);
         }
     }
 }

@@ -4,10 +4,12 @@ namespace Penguin
 {
     public class IdleState : PenguinState
     {
+        private readonly int _animParamId = Animator.StringToHash("Idle");
         public IdleState(PenguinController penguin) : base(penguin) { }
 
         public override void Start()
         {
+            penguin.animator.SetTrigger(_animParamId);
             penguin.rigidbody.velocity = Vector2.zero;
         }
 
@@ -15,7 +17,7 @@ namespace Penguin
         {
             if (penguin.lockAction.IsPressed()) return;
             
-            if (penguin.rawInput.x != 0f)
+            if (penguin.settings.rawInput.x != 0f)
                 penguin.ChangeState(penguin.runState);
             
             else if (penguin.jumpAction.WasPressedThisFrame())

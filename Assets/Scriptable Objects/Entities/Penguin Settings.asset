@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97557467505b4484baa1e90f10c11f89, type: 3}
+  m_Script: {fileID: 11500000, guid: bb714be02da44b91b7d7e17531847e33, type: 3}
   m_Name: Penguin Settings
   m_EditorClassIdentifier: 
   speed: 10
@@ -19,3 +19,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   groundDistance: 1.1
+  slideForce: 250
+  slideEscapeForce: 400
+  smoothTime: 0.1
+  deadZone: 0.001
+  rawInput: {x: 0, y: 0}
+  smoothInput: {x: 0, y: 0}
+  ceilDistance: 1
+  ceilSensorSize: {x: 1.25, y: 0.0625}
+  ceilMask:
+    serializedVersion: 2
+    m_Bits: 512

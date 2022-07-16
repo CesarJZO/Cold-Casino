@@ -207,17 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd210abeeeb4d258c1d41e165df02af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ceilDistance: 1
-  ceilSize: {x: 1.25, y: 0.0625}
-  ceilMask:
-    serializedVersion: 2
-    m_Bits: 512
   slideTimer: 1
   drag: 3
-  smoothTime: 0.1
-  deadZone: 0.001
-  rawInput: {x: 0, y: 0}
-  smoothInput: {x: 0, y: 0}
   moveAction:
     m_Name: Move
     m_Type: 0
@@ -291,10 +282,10 @@ BoxCollider2D:
   m_Offset: {x: -0.03125, y: -0.5625}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 3}
+    newSize: {x: 4, y: 3}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -317,10 +308,10 @@ BoxCollider2D:
   m_Offset: {x: 0.03125, y: 0.78125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4, y: 3}
+    newSize: {x: 4, y: 3}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -516,8 +507,8 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 0
-  m_BlendUpdateMethod: 0
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -605,6 +596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 696353044}
   - component: {fileID: 696353045}
+  - component: {fileID: 696353046}
   m_Layer: 0
   m_Name: Sprites
   m_TagString: Untagged
@@ -679,6 +671,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &696353046
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696353043}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fcc143c1d2b84f7cb2a4d718a893f87b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &857861973
 GameObject:
   m_ObjectHideFlags: 0

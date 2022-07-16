@@ -4,6 +4,7 @@ namespace Penguin
 {
     public class SlideState : PenguinState
     {
+        private readonly int _animParamId = Animator.StringToHash("Slide");
         private bool _cooldown;
         private float _timer;
         public SlideState(PenguinController penguin) : base(penguin) { }
@@ -12,13 +13,15 @@ namespace Penguin
         {
             _cooldown = false;
             penguin.headCollider.enabled = false;
+            penguin.rigidbody.AddForce(penguin.transform.right * penguin.settings.SlideForce);
+            penguin.animator.SetTrigger(_animParamId);
         }
 
         public override void Update()
         {
             if (penguin.Ceiling) return;
 
-            if (penguin.rawInput.y >= 0 && !_cooldown)
+            if (penguin.settings.rawInput.y >= 0 && !_cooldown)
             {
                 _cooldown = true;
                 _timer = penguin.slideTimer;
@@ -44,9 +47,8 @@ namespace Penguin
             {
                 _cooldown = false;
                 penguin.rigidbody.drag = 0;
-                penguin.rigidbody.AddForce(penguin.transform.right * (penguin.settings.JumpStrength * 10));
+                penguin.rigidbody.AddForce(penguin.transform.right * penguin.settings.SlideEscape);
             }
-            
         }
 
         public override void Stop()
