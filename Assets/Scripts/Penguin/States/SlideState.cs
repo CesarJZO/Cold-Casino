@@ -29,7 +29,7 @@ namespace Penguin
             
             if (_timer >= 0) return;
             
-            if (_cooldown)
+            if (_cooldown || Mathf.Abs(penguin.rigidbody.velocity.x) < 1)
                 penguin.ChangeState(penguin.idleState);
         }
 

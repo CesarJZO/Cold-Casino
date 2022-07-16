@@ -1,5 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Penguin
 {
@@ -14,12 +13,14 @@ namespace Penguin
 
         public override void FixedUpdate()
         {
-            if (penguin.PreviousState != penguin.slideState && !penguin.lockAction.IsPressed())
+            if (penguin.PreviousState != penguin.slideState)
                 penguin.rigidbody.velocity = new Vector2(penguin.smoothInput.x * penguin.Settings.Speed, penguin.rigidbody.velocity.y);
-            
+
             if (!(penguin.rigidbody.velocity.y < 0) || !penguin.Grounded) return;
             
-            if (penguin.rawInput.x != 0f)
+            if (penguin.rawInput.y < -0.5f && Mathf.Abs(penguin.rigidbody.velocity.x) > 1)
+                penguin.ChangeState(penguin.slideState);
+            else if (penguin.rawInput.x != 0f)
                 penguin.ChangeState(penguin.runState);
             else
                 penguin.ChangeState(penguin.idleState);

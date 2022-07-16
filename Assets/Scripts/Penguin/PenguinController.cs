@@ -14,7 +14,7 @@ namespace Penguin
         
         [Header("Input")]
         [SerializeField] private float smoothTime;
-        [SerializeField] private float deadZone;
+        public float deadZone;
         
         public Vector2 rawInput;
         public Vector2 smoothInput;
