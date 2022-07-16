@@ -14,7 +14,7 @@ namespace Penguin
 
         public override void FixedUpdate()
         {
-            if (penguin.PreviousState != penguin.slideState)
+            if (penguin.PreviousState != penguin.slideState && !penguin.lockAction.IsPressed())
                 penguin.rigidbody.velocity = new Vector2(penguin.smoothInput.x * penguin.Settings.Speed, penguin.rigidbody.velocity.y);
             
             if (!(penguin.rigidbody.velocity.y < 0) || !penguin.Grounded) return;

@@ -8,12 +8,12 @@ namespace Penguin
 
         public override void Update()
         {
-            if (penguin.rawInput.x == 0)
+            if (penguin.rawInput.x == 0 || penguin.lockAction.WasPressedThisFrame())
                 penguin.ChangeState(penguin.idleState);
-            
-            else if (penguin.rawInput.y < 0f) 
+    
+            else if (penguin.rawInput.y < -0.5f && Mathf.Abs(penguin.rigidbody.velocity.x) > penguin.Settings.Speed / 2)
                 penguin.ChangeState(penguin.slideState);
-
+    
             else if (penguin.jumpAction.WasPressedThisFrame())
                 penguin.ChangeState(penguin.jumpState);
         }

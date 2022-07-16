@@ -13,6 +13,8 @@ namespace Penguin
 
         public override void Update()
         {
+            if (penguin.lockAction.IsPressed()) return;
+            
             if (penguin.rawInput.x != 0f)
                 penguin.ChangeState(penguin.runState);
             

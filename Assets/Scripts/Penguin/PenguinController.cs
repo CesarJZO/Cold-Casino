@@ -7,6 +7,11 @@ namespace Penguin
     [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput))]
     public class PenguinController : MonoBehaviour
     {
+
+        [Header("Testing")] 
+        public float slideTimer;
+        public float drag;
+        
         [Header("Input")]
         [SerializeField] private float smoothTime;
         [SerializeField] private float deadZone;
@@ -21,7 +26,7 @@ namespace Penguin
         [HideInInspector] public InputAction moveAction;
         [HideInInspector] public InputAction jumpAction;
         [HideInInspector] public InputAction attackAction;
-        
+        [HideInInspector] public InputAction lockAction;
         
         [Header("Dependencies")]
         
@@ -33,6 +38,7 @@ namespace Penguin
         #region References
 
         public RaycastHit2D Grounded => Physics2D.Raycast(transform.position, Vector2.down, settings.GroundDistance, settings.GroundMask);
+        public bool IsFacingRight { get; private set; } = true;
 
         #endregion
         
@@ -52,13 +58,15 @@ namespace Penguin
 
         private void Awake()
         {
-            animator = GetComponent<Animator>();
+            animator = GetComponentInChildren<Animator>();
             rigidbody = GetComponent<Rigidbody2D>();
             rigidbody.sharedMaterial = settings.NoFriction;
 
             _playerInput = GetComponent<PlayerInput>();
             moveAction = _playerInput.actions["Move"];
             jumpAction = _playerInput.actions["Jump"];
+            attackAction = _playerInput.actions["Attack"];
+            lockAction = _playerInput.actions["Lock"];
 
             _stateMachine = new StateMachine();
             idleState = new IdleState(this);
@@ -85,7 +93,12 @@ namespace Penguin
             if(Grounded)
                 color = Color.green;
             Debug.DrawRay(transform.position, Vector3.down * settings.GroundDistance, color);
-            
+
+            if (rawInput.x > 0 && (int)_currentRotation.y == 180 || rawInput.x < 0 && (int)_currentRotation.y != 180)
+            {
+                _currentRotation.y = rigidbody.velocity.x > deadZone ? 0 : 180;
+                IsFacingRight = rigidbody.velocity.x > deadZone;
+            }
             
             _stateMachine.CurrentState.Update();
         }
@@ -97,16 +110,14 @@ namespace Penguin
 
         private void FixedUpdate()
         {
-            if (rawInput.x > 0 && (int)_currentRotation.y == 180 || rawInput.x < 0 && (int)_currentRotation.y != 180)
-                _currentRotation.y = rigidbody.velocity.x > 0 ? 0 : 180;
-            
             _stateMachine.CurrentState.FixedUpdate();
         }
 
         private void LateUpdate()
         {
-            transform.rotation = _currentRotation;
             _stateMachine.CurrentState.LateUpdate();
+            if (!lockAction.IsPressed())
+                transform.rotation = _currentRotation;
         }
 
         private void OnDrawGizmos()
