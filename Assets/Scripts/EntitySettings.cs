@@ -22,4 +22,6 @@ public class EntitySettings : ScriptableObject
 
     [SerializeField] private float groundDistance;
     public float GroundDistance => groundDistance;
+
+    public PhysicsMaterial2D NoFriction => new PhysicsMaterial2D() { friction = 0, bounciness = 0, name = "No Friction" };
 }

@@ -8,19 +8,21 @@ namespace Penguin
 
         public override void Update()
         {
-            if (penguin.rawInput == Vector2.down) 
+            if (penguin.rawInput.x == 0)
+                penguin.ChangeState(penguin.idleState);
+            
+            else if (penguin.rawInput.y < 0f) 
                 penguin.ChangeState(penguin.slideState);
 
             else if (penguin.jumpAction.WasPressedThisFrame())
                 penguin.ChangeState(penguin.jumpState);
-            
-            else if (penguin.rawInput.x == 0)
-                penguin.ChangeState(penguin.idleState);
         }
 
         public override void FixedUpdate()
         {
-            penguin.rigidbody.velocity = new Vector2(penguin.smoothInput.x, penguin.rigidbody.velocity.y);
+            penguin.rigidbody.velocity = new Vector2(penguin.smoothInput.x * penguin.Settings.Speed, penguin.rigidbody.velocity.y);
         }
+
+        public override string ToString() => "Running";
     }
 }

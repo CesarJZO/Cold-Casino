@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Penguin
@@ -10,9 +9,13 @@ namespace Penguin
     {
         [Header("Input")]
         [SerializeField] private float smoothTime;
+        [SerializeField] private float deadZone;
+        
         public Vector2 rawInput;
         public Vector2 smoothInput;
         private Vector2 _inputVelocity;
+
+        private Quaternion _currentRotation;
         
         private PlayerInput _playerInput;
         [HideInInspector] public InputAction moveAction;
@@ -51,6 +54,7 @@ namespace Penguin
         {
             animator = GetComponent<Animator>();
             rigidbody = GetComponent<Rigidbody2D>();
+            rigidbody.sharedMaterial = settings.NoFriction;
 
             _playerInput = GetComponent<PlayerInput>();
             moveAction = _playerInput.actions["Move"];
@@ -73,17 +77,35 @@ namespace Penguin
         {
             rawInput = moveAction.ReadValue<Vector2>();
             smoothInput = Vector2.SmoothDamp(smoothInput, rawInput, ref _inputVelocity, smoothTime);
+
+            if (smoothInput.magnitude <= deadZone)
+                smoothInput = Vector2.zero;
+            
+            var color = Color.red;
+            if(Grounded)
+                color = Color.green;
+            Debug.DrawRay(transform.position, Vector3.down * settings.GroundDistance, color);
+            
             
             _stateMachine.CurrentState.Update();
         }
 
+        private void OnGUI()
+        {
+            GUI.Label(new Rect(25,25,300,40), $"Current state: {_stateMachine.CurrentState}");
+        }
+
         private void FixedUpdate()
         {
+            if (rawInput.x > 0 && (int)_currentRotation.y == 180 || rawInput.x < 0 && (int)_currentRotation.y != 180)
+                _currentRotation.y = rigidbody.velocity.x > 0 ? 0 : 180;
+            
             _stateMachine.CurrentState.FixedUpdate();
         }
 
         private void LateUpdate()
         {
+            transform.rotation = _currentRotation;
             _stateMachine.CurrentState.LateUpdate();
         }
 

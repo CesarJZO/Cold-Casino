@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97557467505b4484baa1e90f10c11f89, type: 3}
   m_Name: Penguin Settings
   m_EditorClassIdentifier: 
-  speed: 0
-  jumpStrength: 0
-  maxLife: 0
+  speed: 10
+  jumpStrength: 35
+  maxLife: 100
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
-  groundDistance: 0
+    m_Bits: 512
+  groundDistance: 1.1

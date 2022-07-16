@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 namespace Penguin
 {
@@ -6,9 +7,15 @@ namespace Penguin
     {
         public JumpState(PenguinController penguin) : base(penguin) { }
 
+        public override void Start()
+        {
+            penguin.rigidbody.AddForce(Vector2.up * penguin.Settings.JumpStrength, ForceMode2D.Impulse);
+        }
+
         public override void FixedUpdate()
         {
-            penguin.rigidbody.velocity = new Vector2(penguin.smoothInput.x, penguin.rigidbody.velocity.y);
+            if (penguin.PreviousState != penguin.slideState)
+                penguin.rigidbody.velocity = new Vector2(penguin.smoothInput.x * penguin.Settings.Speed, penguin.rigidbody.velocity.y);
             
             if (!(penguin.rigidbody.velocity.y < 0) || !penguin.Grounded) return;
             
@@ -17,5 +24,7 @@ namespace Penguin
             else
                 penguin.ChangeState(penguin.idleState);
         }
+
+        public override string ToString() => "Jumping";
     }
 }

@@ -6,6 +6,11 @@ namespace Penguin
     {
         public IdleState(PenguinController penguin) : base(penguin) { }
 
+        public override void Start()
+        {
+            penguin.rigidbody.velocity = Vector2.zero;
+        }
+
         public override void Update()
         {
             if (penguin.rawInput.x != 0f)
@@ -17,5 +22,7 @@ namespace Penguin
             else if (penguin.attackAction.WasPressedThisFrame())
                 penguin.ChangeState(penguin.meleeAttackState);
         }
+
+        public override string ToString() => "Idling";
     }
 }
