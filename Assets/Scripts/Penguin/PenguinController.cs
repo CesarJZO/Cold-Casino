@@ -7,7 +7,10 @@ namespace Penguin
     [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput))]
     public class PenguinController : MonoBehaviour
     {
-
+        public float ceilDistance;
+        public Vector2 ceilSize;
+        public LayerMask ceilMask;
+        
         [Header("Testing")] 
         public float slideTimer;
         public float drag;
@@ -27,16 +30,16 @@ namespace Penguin
         [HideInInspector] public InputAction jumpAction;
         [HideInInspector] public InputAction attackAction;
         [HideInInspector] public InputAction lockAction;
-        
+
         [Header("Dependencies")]
-        
-        [SerializeField] private EntitySettings settings;
-        public EntitySettings Settings => settings;
+        public EntitySettings settings;
+        public Collider2D headCollider;
         [HideInInspector] public Animator animator;
         [HideInInspector] public new Rigidbody2D rigidbody;
         
         #region References
 
+        public RaycastHit2D Ceiling => Physics2D.BoxCast(transform.position, ceilSize, transform.rotation.eulerAngles.z, Vector2.up, ceilDistance, ceilMask);
         public RaycastHit2D Grounded => Physics2D.Raycast(transform.position, Vector2.down, settings.GroundDistance, settings.GroundMask);
         public bool IsFacingRight { get; private set; } = true;
 
@@ -126,6 +129,9 @@ namespace Penguin
             // Ground Raycast
             Gizmos.color = Color.green;
             Gizmos.DrawLine(position, position + Vector3.down * settings.GroundDistance);
+            // Ceiling Boxcast
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(position, ceilSize);
         }
     }
 }
