@@ -206,8 +206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd210abeeeb4d258c1d41e165df02af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slideTimer: 1
+  drag: 3
   smoothTime: 0.1
-  deadZone: 0
+  deadZone: 0.001
   rawInput: {x: 0, y: 0}
   smoothInput: {x: 0, y: 0}
   moveAction:
@@ -233,6 +235,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 8690f986-da9f-47a8-ad5d-e3ad76a3015f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  lockAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -5854,6 +5865,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1711233159}
+  - component: {fileID: 1711233160}
   m_Layer: 8
   m_Name: Weapon Manager
   m_TagString: Untagged
@@ -5868,7 +5880,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711233158}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5876,6 +5888,21 @@ Transform:
   m_Father: {fileID: 114760879}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1711233160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711233158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c34dea8525e94fd5b4f7799bc1b4d51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  inventory: {fileID: 0}
+  penguin: {fileID: 114760878}
 --- !u!1 &2055589855
 GameObject:
   m_ObjectHideFlags: 0
