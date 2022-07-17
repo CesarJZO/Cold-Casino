@@ -1,5 +1,7 @@
 ﻿# Cold Casino
 
+![Cold Casino Logo](Resources/logo.png)
+
 This is a very amazing game <3
 
 ## Credits
