@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Penguin Status
   m_EditorClassIdentifier: 
   maxHealth: 30
-  currentWeapon: {fileID: 0}
+  currentWeapon: {fileID: 5422231796811815568, guid: bc972d1d7edd0a94ca36c9262f7d7ede, type: 3}
   penguin: {fileID: 0}
   diceCounter: 0
