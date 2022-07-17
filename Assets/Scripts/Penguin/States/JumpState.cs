@@ -16,7 +16,7 @@ namespace Penguin
 
         public override void Update()
         {
-            if (penguin.attackAction.WasPressedThisFrame())
+            if (penguin.attackAction.WasPressedThisFrame() && penguin.HasAMeleeWeapon())
                 penguin.ChangeState(penguin.meleeAttackState);
         }
 

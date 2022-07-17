@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapons;
 
 namespace Penguin
 {
@@ -22,6 +23,8 @@ namespace Penguin
 
         [Header("Dependencies")]
         public PenguinSettings settings;
+        public PenguinStatus status;
+        public WeaponInventory inventory;
         public Collider2D headCollider;
         public Transform groundSensor;
         public Transform ceilSensor;
@@ -29,6 +32,7 @@ namespace Penguin
         [HideInInspector] public new Rigidbody2D rigidbody;
 
         public GameObject axeHitbox;
+        public GameObject katHitbox;
 
         #region Status references
 
@@ -62,8 +66,10 @@ namespace Penguin
 
         #endregion
 
+        #region MonoBehaviour
         private void Awake()
         {
+            status.penguin = this;
             animator = GetComponentInChildren<Animator>();
             rigidbody = GetComponent<Rigidbody2D>();
             rigidbody.sharedMaterial = settings.NoFriction;
@@ -135,5 +141,19 @@ namespace Penguin
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireCube(ceilSensor.position, settings.CeilSensorSize);
         }
+        #endregion
+
+        #region Methods
+
+        public bool HasAMeleeWeapon()
+        {
+            if (status.currentWeapon == null) return false;
+            
+            var s = status.currentWeapon.name.ToLower();
+            
+            return s.Contains("axe") || s.Contains("axe");
+        }
+
+        #endregion
     }
 }

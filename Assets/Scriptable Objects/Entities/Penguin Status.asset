@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee92f4937c7e4a55a0daef98e3d458d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b178210cc364f3f9a11946347617fd0, type: 3}
   m_Name: Penguin Status
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 30
   currentWeapon: {fileID: 0}
+  penguin: {fileID: 0}
+  diceCounter: 0

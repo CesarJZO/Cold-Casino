@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class DamageManager : MonoBehaviour
@@ -34,10 +33,11 @@ public class DamageManager : MonoBehaviour
         var elapsed = 0f;
         while (elapsed <= animationTime)
         {
-            var t = Mathf.Abs(Mathf.Sin(elapsed * 90 * Mathf.Deg2Rad));
+            var t = Mathf.Abs(Mathf.Sin(elapsed * 540/animationTime * Mathf.Deg2Rad));
             spriteRenderer.color = Color.Lerp(_originalColor, damageColor, t);
             elapsed += Time.deltaTime;
             yield return null;
         }
+        spriteRenderer.color = _originalColor;
     }
 }

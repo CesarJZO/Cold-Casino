@@ -114,7 +114,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Shotgun
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 88
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10a09387ef598e46ae50dca10897654
+      internalID: 1035934670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AxelRoose
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 40
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81bcc102eab97564c957aaf7e13d5351
+      internalID: 280410628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: KatanaMar
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 40
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a6d1efc4b673749a2a6014e417188e
+      internalID: 1384850982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordFish
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 72
+        width: 64
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eef5689a81c98c4cb4d6dd5f41676ea
+      internalID: 1164288993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -125,7 +209,37 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Weapons_8: 1750585018
+      Weapons_15: -1310194435
+      AxelRoose: 280410628
+      SwordFish: 1164288993
+      Weapons_29: 1653609854
+      Weapons_7: -1383304922
+      Weapons_20: -1385764941
+      Weapons_28: -1759078253
+      Weapons_6: -1385750913
+      Weapons_22: 1849813137
+      Weapons_9: 2064212880
+      Weapons_24: 2026801565
+      Weapons_5: 566371760
+      Weapons_19: -708865487
+      Weapons_1: -1551559330
+      Weapons_25: -1893689329
+      Weapons_17: 659975784
+      Weapons_27: -1043094712
+      Weapons_23: 787467068
+      Weapons_12: -1995000294
+      Weapons_4: -463299124
+      Weapons_26: -1572063633
+      Weapons_16: 411115654
+      Shotgun: 1035934670
+      KatanaMar: 1384850982
+      Weapons_13: 145115943
+      Weapons_18: 1209359088
+      Weapons_11: -1369052933
+      Weapons_14: 746418896
+      Weapons_21: -838036136
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
