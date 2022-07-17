@@ -11,6 +11,7 @@ public class PenguinSettings : EntitySettings
     [SerializeField] private float slideEscapeForce;
     public float SlideEscape => slideEscapeForce;
     
+    
     [Header("Input")]
 
     [SerializeField] private float smoothTime;

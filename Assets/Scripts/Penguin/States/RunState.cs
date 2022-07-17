@@ -20,8 +20,11 @@ namespace Penguin
             else if (penguin.settings.rawInput.y < -0.5f && Mathf.Abs(penguin.rigidbody.velocity.x) > penguin.settings.Speed / 2)
                 penguin.ChangeState(penguin.slideState);
     
-            else if (penguin.jumpAction.WasPressedThisFrame())
+            else if (penguin.jumpAction.WasPressedThisFrame() && penguin.Grounded)
                 penguin.ChangeState(penguin.jumpState);
+            
+            else if (penguin.attackAction.WasPressedThisFrame())
+                penguin.ChangeState(penguin.meleeAttackState);
         }
 
         public override void FixedUpdate()

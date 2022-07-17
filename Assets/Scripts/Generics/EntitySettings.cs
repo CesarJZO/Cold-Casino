@@ -14,6 +14,11 @@ public class EntitySettings : ScriptableObject
     public int MaxLife => maxLife;
 
 
+    [Header("Damage")]
+    
+    [SerializeField] private int damage;
+    public int Damage => damage;
+    
     [Header("Physics")]
     
     [SerializeField] private LayerMask groundMask;

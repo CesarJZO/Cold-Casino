@@ -28,9 +28,12 @@ namespace Penguin
                 _timer = penguin.slideTimer;
                 penguin.rigidbody.drag = penguin.drag;
             }
-            
+
             if (penguin.jumpAction.WasPressedThisFrame())
+            {
                 penguin.ChangeState(penguin.jumpState);
+                return;
+            }
 
             _timer -= Time.deltaTime;
             

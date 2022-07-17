@@ -28,6 +28,8 @@ namespace Penguin
         [HideInInspector] public Animator animator;
         [HideInInspector] public new Rigidbody2D rigidbody;
 
+        public GameObject axeHitbox;
+
         #region Status references
 
         public RaycastHit2D Ceiling => Physics2D.BoxCast(
@@ -124,7 +126,7 @@ namespace Penguin
                 transform.rotation = _currentRotation;
         }
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             // Ground Boxcast
             Gizmos.color = Color.cyan;

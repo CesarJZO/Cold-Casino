@@ -14,6 +14,12 @@ namespace Penguin
             penguin.rigidbody.AddForce(Vector2.up * penguin.settings.JumpStrength, ForceMode2D.Impulse);
         }
 
+        public override void Update()
+        {
+            if (penguin.attackAction.WasPressedThisFrame())
+                penguin.ChangeState(penguin.meleeAttackState);
+        }
+
         public override void FixedUpdate()
         {
             if (penguin.PreviousState != penguin.slideState)
