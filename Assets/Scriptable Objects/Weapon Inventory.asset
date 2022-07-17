@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Weapon Inventory
   m_EditorClassIdentifier: 
   weapons:
+  - {fileID: 5422231796811815568, guid: bc972d1d7edd0a94ca36c9262f7d7ede, type: 3}
+  - {fileID: 7867606298259601390, guid: 3160235eb239e2a48b68b8f2e58e2fd1, type: 3}
+  projectiles:
   - {fileID: 0}
-  proyectiles: []

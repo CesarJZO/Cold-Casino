@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Hitbox
   - Hurtbox
+  - Collectable
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Penguin
   - Ground
   - Enemy
-  - 
+  - Item
   - 
   - 
   - 

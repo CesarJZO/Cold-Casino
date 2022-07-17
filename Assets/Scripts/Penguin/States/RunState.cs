@@ -23,7 +23,7 @@ namespace Penguin
             else if (penguin.jumpAction.WasPressedThisFrame() && penguin.Grounded)
                 penguin.ChangeState(penguin.jumpState);
             
-            else if (penguin.attackAction.WasPressedThisFrame())
+            else if (penguin.attackAction.WasPressedThisFrame() && penguin.HasAMeleeWeapon())
                 penguin.ChangeState(penguin.meleeAttackState);
         }
 
