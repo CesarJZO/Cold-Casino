@@ -10,11 +10,10 @@ namespace Penguin
         [Header("Testing")] 
         public float slideTimer;
         public float drag;
-        
-        private Vector2 _inputVelocity;
 
+        private Vector2 _inputVelocity;
         private Quaternion _currentRotation;
-        
+
         private PlayerInput _playerInput;
         [HideInInspector] public InputAction moveAction;
         [HideInInspector] public InputAction jumpAction;
@@ -24,17 +23,29 @@ namespace Penguin
         [Header("Dependencies")]
         public PenguinSettings settings;
         public Collider2D headCollider;
+        public Transform groundSensor;
+        public Transform ceilSensor;
         [HideInInspector] public Animator animator;
         [HideInInspector] public new Rigidbody2D rigidbody;
-        
-        #region References
 
-        public RaycastHit2D Ceiling => Physics2D.BoxCast(transform.position, settings.CeilSize, transform.rotation.eulerAngles.z, Vector2.up, settings.CeilDistance, settings.CeilMask);
-        public RaycastHit2D Grounded => Physics2D.Raycast(transform.position, Vector2.down, settings.GroundDistance, settings.GroundMask);
+        #region Status references
+
+        public RaycastHit2D Ceiling => Physics2D.BoxCast(
+            ceilSensor.position, settings.CeilSensorSize,
+            ceilSensor.rotation.eulerAngles.z, Vector2.up,
+            settings.CeilDistance, settings.CeilMask
+        );
+
+        public RaycastHit2D Grounded => Physics2D.BoxCast(
+            groundSensor.position, settings.GroundSensorSize,
+            groundSensor.rotation.eulerAngles.z, Vector2.down,
+            settings.GroundDistance, settings.GroundMask
+        );
+
         public bool IsFacingRight { get; private set; } = true;
 
         #endregion
-        
+
         #region State Machine
 
         private StateMachine _stateMachine;
@@ -81,9 +92,9 @@ namespace Penguin
 
             if (settings.smoothInput.magnitude <= settings.DeadZone)
                 settings.smoothInput = Vector2.zero;
-            
+
             var color = Color.red;
-            if(Grounded)
+            if (Grounded)
                 color = Color.green;
             Debug.DrawRay(transform.position, Vector3.down * settings.GroundDistance, color);
 
@@ -92,13 +103,13 @@ namespace Penguin
                 _currentRotation.y = rigidbody.velocity.x > settings.DeadZone ? 0 : 180;
                 IsFacingRight = rigidbody.velocity.x > settings.DeadZone;
             }
-            
+
             _stateMachine.CurrentState.Update();
         }
 
         private void OnGUI()
         {
-            GUI.Label(new Rect(25,25,300,40), $"Current state: {_stateMachine.CurrentState}");
+            GUI.Label(new Rect(25, 25, 300, 40), $"Current state: {_stateMachine.CurrentState}");
         }
 
         private void FixedUpdate()
@@ -113,15 +124,14 @@ namespace Penguin
                 transform.rotation = _currentRotation;
         }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmos()
         {
-            var position = transform.position;
-            // Ground Raycast
+            // Ground Boxcast
             Gizmos.color = Color.cyan;
-            Gizmos.DrawLine(position, position + Vector3.down * settings.GroundDistance);
+            Gizmos.DrawWireCube(groundSensor.position, settings.GroundSensorSize);
             // Ceiling Boxcast
             Gizmos.color = Color.magenta;
-            Gizmos.DrawWireCube(position, settings.CeilSize);
+            Gizmos.DrawWireCube(ceilSensor.position, settings.CeilSensorSize);
         }
     }
 }

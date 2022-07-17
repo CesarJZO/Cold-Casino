@@ -13,7 +13,8 @@ namespace Penguin
         {
             _cooldown = false;
             penguin.headCollider.enabled = false;
-            penguin.rigidbody.AddForce(penguin.transform.right * penguin.settings.SlideForce);
+            if (penguin.PreviousState != penguin.jumpState)
+                penguin.rigidbody.AddForce(penguin.transform.right * penguin.settings.SlideForce);
             penguin.animator.SetTrigger(_animParamId);
         }
 

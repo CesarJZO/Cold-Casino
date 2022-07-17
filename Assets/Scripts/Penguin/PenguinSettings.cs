@@ -30,7 +30,7 @@ public class PenguinSettings : EntitySettings
     public float CeilDistance => ceilDistance;
 
     [SerializeField] private Vector2 ceilSensorSize;
-    public Vector2 CeilSize => ceilSensorSize;
+    public Vector2 CeilSensorSize => ceilSensorSize;
 
     [SerializeField] private LayerMask ceilMask;
     public LayerMask CeilMask => ceilMask;

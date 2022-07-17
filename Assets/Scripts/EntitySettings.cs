@@ -19,6 +19,9 @@ public class EntitySettings : ScriptableObject
     [SerializeField] private LayerMask groundMask;
     public LayerMask GroundMask => groundMask;
 
+    [SerializeField] private Vector2 groundSensorSize;
+    public Vector2 GroundSensorSize => groundSensorSize;
+    
     [SerializeField] private float groundDistance;
     public float GroundDistance => groundDistance;
 
