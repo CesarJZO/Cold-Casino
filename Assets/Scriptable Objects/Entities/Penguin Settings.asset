@@ -15,6 +15,7 @@ MonoBehaviour:
   speed: 10
   jumpStrength: 35
   maxLife: 100
+  damage: 5
   groundMask:
     serializedVersion: 2
     m_Bits: 512
@@ -27,7 +28,7 @@ MonoBehaviour:
   rawInput: {x: 0, y: 0}
   smoothInput: {x: 0, y: 0}
   ceilDistance: 1
-  ceilSensorSize: {x: 0, y: 0}
+  ceilSensorSize: {x: 1.3125, y: 0.0625}
   ceilMask:
     serializedVersion: 2
     m_Bits: 512

@@ -10,7 +10,7 @@ namespace Penguin
         public override void Start()
         {
             penguin.animator.SetTrigger(_animParamId);
-            penguin.rigidbody.velocity = Vector2.zero;
+            penguin.rigidbody.velocity = new Vector2(0, penguin.rigidbody.velocity.y);
         }
 
         public override void Update()
@@ -20,7 +20,7 @@ namespace Penguin
             if (penguin.settings.rawInput.x != 0f)
                 penguin.ChangeState(penguin.runState);
             
-            else if (penguin.jumpAction.WasPressedThisFrame())
+            else if (penguin.jumpAction.WasPressedThisFrame() && penguin.Grounded)
                 penguin.ChangeState(penguin.jumpState);
             
             else if (penguin.attackAction.WasPressedThisFrame())
