@@ -11,7 +11,7 @@ public class Bomb : MonoBehaviour
 
     [SerializeField]
 
-    Rigidbody2D rigidbody;
+    new Rigidbody2D rigidbody;
 
     [SerializeField]
 

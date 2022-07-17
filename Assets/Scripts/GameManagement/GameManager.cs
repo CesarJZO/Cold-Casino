@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public void SetRandomWeapon()
     {
+        
         penguinStatus.currentWeapon = penguinStatus.penguin.inventory.RandomWeapon;
     }
 }

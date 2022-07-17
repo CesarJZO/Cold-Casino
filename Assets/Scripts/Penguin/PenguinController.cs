@@ -8,8 +8,7 @@ namespace Penguin
     [RequireComponent(typeof(Rigidbody2D), typeof(PlayerInput))]
     public class PenguinController : MonoBehaviour
     {
-        [Header("Testing")] 
-        public float slideTimer;
+        [Header("Testing")] public float slideTimer;
         public float drag;
 
         private Vector2 _inputVelocity;
@@ -21,8 +20,7 @@ namespace Penguin
         [HideInInspector] public InputAction attackAction;
         [HideInInspector] public InputAction lockAction;
 
-        [Header("Dependencies")]
-        public PenguinSettings settings;
+        [Header("Dependencies")] public PenguinSettings settings;
         public PenguinStatus status;
         public WeaponInventory inventory;
         public Collider2D headCollider;
@@ -67,6 +65,7 @@ namespace Penguin
         #endregion
 
         #region MonoBehaviour
+
         private void Awake()
         {
             status.penguin = this;
@@ -96,7 +95,8 @@ namespace Penguin
         private void Update()
         {
             settings.rawInput = moveAction.ReadValue<Vector2>();
-            settings.smoothInput = Vector2.SmoothDamp(settings.smoothInput, settings.rawInput, ref _inputVelocity, settings.SmoothTime);
+            settings.smoothInput = Vector2.SmoothDamp(settings.smoothInput, settings.rawInput, ref _inputVelocity,
+                settings.SmoothTime);
 
             if (settings.smoothInput.magnitude <= settings.DeadZone)
                 settings.smoothInput = Vector2.zero;
@@ -106,7 +106,8 @@ namespace Penguin
                 color = Color.green;
             Debug.DrawRay(transform.position, Vector3.down * settings.GroundDistance, color);
 
-            if (settings.rawInput.x > 0 && (int)_currentRotation.y == 180 || settings.rawInput.x < 0 && (int)_currentRotation.y != 180)
+            if (settings.rawInput.x > 0 && (int)_currentRotation.y == 180 ||
+                settings.rawInput.x < 0 && (int)_currentRotation.y != 180)
             {
                 _currentRotation.y = rigidbody.velocity.x > settings.DeadZone ? 0 : 180;
                 IsFacingRight = rigidbody.velocity.x > settings.DeadZone;
@@ -114,11 +115,12 @@ namespace Penguin
 
             _stateMachine.CurrentState.Update();
         }
-
+#if UNITY_EDITOR
         private void OnGUI()
         {
             GUI.Label(new Rect(25, 25, 300, 40), $"Current state: {_stateMachine.CurrentState}");
         }
+#endif
 
         private void FixedUpdate()
         {
@@ -141,6 +143,7 @@ namespace Penguin
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireCube(ceilSensor.position, settings.CeilSensorSize);
         }
+
         #endregion
 
         #region Methods
@@ -148,9 +151,9 @@ namespace Penguin
         public bool HasAMeleeWeapon()
         {
             if (status.currentWeapon == null) return false;
-            
+
             var s = status.currentWeapon.name.ToLower();
-            
+
             return s.Contains("axe") || s.Contains("axe");
         }
 
