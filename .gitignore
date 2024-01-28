@@ -1,4 +1,25 @@
-﻿### Unity template
+﻿# Items added to template
+#
+# Asset files
+#
+# Text Mesh Pro files
+**/TextMesh Pro/
+**/TextMesh Pro.meta
+# Test files
+**/[Tt]est/
+**/[Tt]est.meta
+**/[Tt]ests/
+**/[Tt]ests.meta
+#
+# Builds
+/*[Bb]uild/
+/*[Bb]uilds/
+# Editors
+.vscode/
+.idea/
+.vsconfig
+
+### Unity template
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
